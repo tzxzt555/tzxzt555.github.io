@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-for-ajax请求</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- :src 表示绑定数据 src中的属性值是动态设置的 是通过js表达式实现赋值
+        :相当于v-bind 是vue中的一个数据绑定指令 -->
+      <img v-for="item in list" :src="item.imageUrl" />
+    </div>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          list: []
+        }
+      });
+
+      axios.get("https://net-music.penkuoer.com/banner").then(function(res) {
+        app.list = res.data.banners;
+      });
+    </script>
+  </body>
+</html>

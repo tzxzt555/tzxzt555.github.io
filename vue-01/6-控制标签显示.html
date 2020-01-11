@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>控制标签展示v-show/v-if的区别</title>
+    <style>
+      .ball {
+        width: 200px;
+        height: 200px;
+        background-color: deeppink;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 一个页面中可以有多个vue实例， 它们之间互不影响 -->
+    <!--
+      v-show  控制标签的显示和隐藏(display)
+      v-if    直接删除标签
+     -->
+    <div id="app">
+      <button @click="isShow=!isShow">toggle</button>
+      <div class="ball" v-show="isShow"></div>
+    </div>
+    <hr />
+    <div id="app2">
+      <button @click="isShow=!isShow">toggle</button>
+      <div class="ball" v-if="isShow"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: true
+        }
+      });
+
+      var app2 = new Vue({
+        el: "#app2",
+        data: {
+          isShow: true
+        }
+      });
+    </script>
+  </body>
+</html>

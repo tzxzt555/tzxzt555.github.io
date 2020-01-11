@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-html</title>
+  </head>
+  <body>
+    <!-- v-html可以直接解析html标签 -->
+    <div id="app">
+      <h5>直接显示</h5>
+      <div>{{txt}}</div>
+      <hr />
+      <h5>v-html</h5>
+      <div v-html="txt"></div>
+      <br />
+      <hr />
+      <textarea v-model="txt" cols="30" rows="10"></textarea>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          txt: ""
+        }
+      });
+    </script>
+  </body>
+</html>
