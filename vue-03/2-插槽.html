@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>插槽</title>
+    <style>
+        .person span {
+            padding: 0.5rem;
+            background-color: deeppink;
+            color: #fff;
+            border-radius: 0.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <person :model="{
+        name: '白展堂',
+        age: 32,
+      }">
+            <template #avatars>
+          <img
+            style="width:100px; border-radius: 50%;"
+            src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3928005588,3731611759&fm=26&gp=0.jpg"
+          />
+        </template>
+            <template #skills>
+          <span>葵花点穴手</span>
+          <span>跑堂</span>
+        </template>
+
+            <p>在同福客栈跑堂的盗圣</p>
+            <p>佟掌柜的情人</p>
+
+        </person>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 插槽 可以理解为占位符
+        var person = {
+            template: `<div class="person">
+        <h5>{{model.name}}</h5>
+        <p>年龄:{{model.age}}</p>
+        <slot></slot>
+        <h5>头像:</h5>
+        <slot name="avatars"></slot>
+        <h5>技能:</h5>
+        <slot name="skills"></slot>
+      </div>`,
+            props: ["model"]
+        };
+        var app = new Vue({
+            el: "#app",
+            components: {
+                person
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>组件生命周期</title>
+    <style>
+        .ball {
+            width: 180px;
+            height: 180px;
+            background-color: deeppink;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="isShow=!isShow">{{isShow?'隐藏':'显示'}}</button>
+        <hr />
+        <ball v-if="isShow"></ball>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 四个阶段
+        //   1. 创建
+        //   2. 挂载
+        //   3. 更新(当数据改变之后会循环执行)
+        //   4. 销毁
+        Vue.component("ball", {
+            template: `<div class="ball"></div>`,
+            beforeCreate() {
+                console.log("小球创建之前");
+            },
+            created() {
+                console.log("小球创建完成");
+                // 在此处可以调用api接口获取数据
+            },
+            beforeMount() {
+                console.log("小球挂载之前");
+            },
+            mounted() {
+                console.log("小球挂载完成");
+            },
+
+            /// 更新阶段的钩子函数,会循环执行
+            beforeUpdate() {
+                console.log("小球更新之前");
+            },
+            updated() {
+                console.log("小球更新完成");
+            },
+
+            beforeDestroy() {
+                console.log("小球销毁之前");
+            },
+            destroyed() {
+                console.log("小球销毁完成");
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: true
+            },
+            beforeCreate() {
+                console.log("组件创建之前");
+            },
+            created() {
+                console.log("组件创建完成");
+                // 在此处可以调用api接口获取数据
+            },
+            beforeMount() {
+                console.log("组件挂载之前");
+            },
+            mounted() {
+                console.log("组件挂在完成");
+            },
+
+            /// 更新阶段的钩子函数,会循环执行
+            beforeUpdate() {
+                console.log("组件更新之前");
+            },
+            updated() {
+                console.log("组件更新完成");
+            },
+
+            beforeDestroy() {
+                console.log("组件销毁之前");
+            },
+            destroyed() {
+                console.log("组件销毁完成");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>组件定义</title>
+</head>
+
+<body>
+    <div id="app">
+        <hw></hw>
+        <hw2></hw2>
+        <hw3></hw3>
+    </div>
+    <!-- template是属于一个vue中的特殊节点 在页面中不会直接显示 -->
+    <template id="tpl">
+      <div class="main-2">
+        <h1>我是一个组件的模板</h1>
+        <p>这段模板字符串在html代码中</p>
+      </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/x-template" id="tpl2">
+        <div class="main-3">
+            <h3>我是又一个组件</h3>
+            <p>这是一段很长的文字</p>
+        </div>
+    </script>
+    <script>
+        // 组件写template的几种方法
+        //  1. 直接写一个字符串
+        //  2. 在网页中写一个template节点 用来放置模板内容
+        //  3. 写一个script标签 用来放置模板内容,注意设置type属性
+        const hw = {
+            template: `<div class="main-1">
+         <h3>我是一个组件</h3>
+        </div>`
+        };
+        const hw2 = {
+            template: "#tpl"
+        };
+        const hw3 = {
+            template: "#tpl2"
+        };
+        var app = new Vue({
+            el: "#app",
+            components: {
+                hw,
+                hw2,
+                hw3
+            }
+        });
+    </script>
+</body>
+
+</html>
