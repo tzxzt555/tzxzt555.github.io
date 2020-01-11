@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>绑定样式</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 设置样式的时候需要使用驼峰命名的方式 -->
+      <div
+        :style="{
+        width: w+'px',
+        height: '100px',
+        backgroundColor: `rgb(${r*Math.random()},${g*Math.random()},${b*Math.random()})`
+      }"
+      ></div>
+      <input type="range" step="20" v-model="w" max="1000" min="100" />
+      <input type="range" step="10" v-model="r" max="255" min="0" />
+      <input type="range" step="10" v-model="g" max="255" min="0" />
+      <input type="range" step="10" v-model="b" max="255" min="0" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          w: 100,
+          r: 0,
+          g: 0,
+          b: 0,
+          sty: {
+            backgroundColor: "deeppink",
+            width: "130px",
+            height: "100px"
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>过滤器</title>
+</head>
+
+<body>
+    <!-- 把输入的内容做相应的处理显示新的内容 -->
+    <div id="app">
+        <input type="text" v-model="msg" />
+        <p>执行大写转换:{{msg | toUpper | otherF}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: ""
+            },
+            // 过滤器
+            filters: {
+                toUpper(v) {
+                    return v.toUpperCase() + "，矮油！！@@";
+                },
+                otherF(v) {
+                    return v + "------";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

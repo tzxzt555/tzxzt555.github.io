@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>子传父</title>
+  </head>
+  <body>
+    <div id="app">
+      <h5>当前的计数值为:{{fromChild}}</h5>
+      <hr />
+      <!-- @xxx 做事件监听 -->
+      <counter @to-parent="childChanged"></counter>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      // 子组件向父组件传参 使用事件派发
+      Vue.component("counter", {
+        template: `<button @click="plus">值为:{{count}}</button>`,
+        data() {
+          return {
+            count: 1
+          };
+        },
+        methods: {
+          plus() {
+            this.count = this.count + 1;
+            // this.$emit派发事件, 参数一 事件名字 参数二 传递的数据
+            this.$emit("to-parent", this.count);
+          }
+        }
+      });
+      var app = new Vue({
+        el: "#app",
+        data: {
+          fromChild: 1
+        },
+        methods: {
+          childChanged(v) {
+            this.fromChild = v;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>组件</title>
+  </head>
+  <body>
+    <div id="app">
+      <hw></hw>
+      <ghw></ghw>
+    </div>
+    <hr />
+    <div id="app2">
+      <ghw></ghw>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      // 最简单直接的方式定义组件
+      //  注意
+      //        1. 组件的模板只能有一个根节点
+      //        2. 组件的data必须是一个function,其返回值为一个组件的数据对象
+      // 此种方式定义的组件为局部组件,
+      //  局部组件在使用的时候需要注册,在父组件里通过components属性进行注册
+      const hw = {
+        template: `<div>
+            <h1>你好，世界！</h1>
+            <p>ssssss</p>
+            <input v-model="name"/>
+            <p>{{name.split('').reverse().join('')}}</p>
+          </div>`,
+        data() {
+          return {
+            name: "小灰"
+          };
+        }
+      };
+
+      // 此种方法定义的组件叫全局组件 可以直接使用 无需注册
+      Vue.component("ghw", {
+        template: `<h5>我是一个全局组件</h5>`
+      });
+      var app = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+          hw
+        }
+      });
+
+      var app2 = new Vue({
+        el: "#app2",
+        data: {}
+      });
+    </script>
+  </body>
+</html>
